@@ -75,3 +75,5 @@ project/boot/
 .cache
 
 # Created by .ignore support plugin (hsz.mobi)
+
+.DS_Store
