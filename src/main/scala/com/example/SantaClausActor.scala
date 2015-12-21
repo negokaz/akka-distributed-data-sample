@@ -26,11 +26,11 @@ class SantaClausActor extends Actor with ActorLogging {
   def receive = {
 
     /** 子どもたちからの手紙を受け取り、手紙に書いてある名前を共有の名簿に追加する */
-    case ChildActor.Letter(name) =>
+    case ChildActor.Letter(fromName) =>
 
-      replicator ! Replicator.Update(childrenNameSetKey, GSet.empty[String], WriteLocal)(_ + name)
+      replicator ! Replicator.Update(childrenNameSetKey, GSet.empty[String], WriteLocal)(_ + fromName)
 
-      log.info("Ho! Ho! Ho! I'm {}. I received a letter from {}!", myName, name)
+      log.info("Ho! Ho! Ho! I'm {}. I received a letter from {}!", myName, fromName)
 
       sender() ! Gift()
 
